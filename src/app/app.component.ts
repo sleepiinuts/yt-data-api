@@ -12,11 +12,10 @@ import { APP_CONFIG } from '../environments/app-config.token';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'yt-data-api';
-  API_KEY = 'AIzaSyADKo3MMWniugz0Km7hPTixwgOJPZyXxss';
-  URI = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=marvel+snap+meta+deck&key=${this.API_KEY}`;
-
   private readonly appConfig = inject(APP_CONFIG);
+
+  title = 'yt-data-api';
+  URI = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=marvel+snap+meta+deck&key=${this.appConfig.apiKey}`;
 
   constructor(private httpClient: HttpClient) {
     // this.httpClient.get(this.URI).subscribe(
