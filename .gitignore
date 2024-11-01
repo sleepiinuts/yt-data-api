@@ -45,3 +45,6 @@ Thumbs.db
 
 .nx/cache
 .nx/workspace-data
+
+# Enviroment API key
+src/environments/
