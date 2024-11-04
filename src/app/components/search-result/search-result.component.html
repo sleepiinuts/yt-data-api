@@ -1,9 +1,22 @@
-<mat-card class="example-card" appearance="outlined">
+<!-- <mat-card class="example-card" appearance="outlined">
   <img mat-card-image src="https://i.ytimg.com/vi/yfF64TbB-wM/hqdefault.jpg" />
   <mat-card-content>
     <p>
       Surfing Hawaii #surfinghawaii, #surfing, #bigwaves, #waves, #wsl,
       #northshore, #himalayas, #thehimalayas, #himalayashawaii, ...
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card> -->
+
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image [src]="item.snippet.thumbnails.high.url" />
+  <mat-card-content>
+    <p>
+      {{ item.snippet.description }}
     </p>
   </mat-card-content>
   <mat-card-actions>

@@ -1,3 +1,12 @@
-.example-card {
-  max-width: 30%;
+// .example-card {
+//   max-width: 30%;
+// }
+
+:host{
+  width: 30%;
+  // height: 40%;
+}
+
+.card {
+  height: 100%;
 }
