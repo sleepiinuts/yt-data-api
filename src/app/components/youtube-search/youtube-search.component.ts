@@ -13,11 +13,12 @@ import {
 } from '@angular/cdk/scrolling';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SearchResultComponent } from '../search-result/search-result.component';
 
 @Component({
   selector: 'app-youtube-search',
   standalone: true,
-  imports: [ScrollingModule],
+  imports: [ScrollingModule, SearchResultComponent],
   templateUrl: './youtube-search.component.html',
   styleUrl: './youtube-search.component.scss',
 })
@@ -32,15 +33,14 @@ export class YoutubeSearchComponent {
     //     map((event) => event.position)
     //   )
     //   .subscribe((position) => console.log(`scroll position: ${position}`));
-
-    this.scroll
-      .scrolled()
-      .pipe(takeUntilDestroyed())
-      .subscribe((data) =>
-        console.log(
-          `scrolldata: ${data?.getElementRef().nativeElement.scrollTop}`
-        )
-      );
+    // this.scroll
+    //   .scrolled()
+    //   .pipe(takeUntilDestroyed())
+    //   .subscribe((data) =>
+    //     console.log(
+    //       `scrolldata: ${data?.getElementRef().nativeElement.scrollTop}`
+    //     )
+    //   );
   }
 
   scrollTracker(event: Event) {
@@ -61,13 +61,13 @@ export class YoutubeSearchComponent {
     }
   }
 
-  @HostListener('window:scroll', []) onscroll() {
-    console.log(window.scrollY);
-    console.log(`bottom: ${document.documentElement.scrollHeight}`);
-    console.log(`window height: ${window.innerHeight}`);
-    console.log(`window outer height: ${window.outerHeight}`);
-    if (window.scrollY >= document.documentElement.scrollHeight) {
-      console.log('reach bottom');
-    }
-  }
+  // @HostListener('window:scroll', []) onscroll() {
+  //   console.log(window.scrollY);
+  //   console.log(`bottom: ${document.documentElement.scrollHeight}`);
+  //   console.log(`window height: ${window.innerHeight}`);
+  //   console.log(`window outer height: ${window.outerHeight}`);
+  //   if (window.scrollY >= document.documentElement.scrollHeight) {
+  //     console.log('reach bottom');
+  //   }
+  // }
 }
