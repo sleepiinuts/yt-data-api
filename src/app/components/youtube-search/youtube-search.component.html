@@ -16,4 +16,8 @@
   </div>
 </div>
 
-<app-search-result></app-search-result>
+<div class="search-result">
+  @for(item of items;track item.id?.videoId){
+  <app-search-result [item]="item"></app-search-result>
+  }
+</div>

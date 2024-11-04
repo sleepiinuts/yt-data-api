@@ -47,6 +47,12 @@ $content-width:70%;
   width: $content-width;
 }
 
+.search-result {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+
 
 
 
