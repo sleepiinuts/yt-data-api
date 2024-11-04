@@ -1,24 +1,24 @@
 export interface SearchResult {
-  kind: string;
-  etag: string;
-  id: {
+  kind?: string;
+  etag?: string;
+  id?: {
     kind: string;
     videoId: string;
     channelId: string;
     playlistId: string;
   };
   snippet: {
-    publishedAt: Date;
-    channelId: string;
+    publishedAt?: Date;
+    channelId?: string;
     title: string;
     description: string;
     thumbnails: {
-      default: {
+      default?: {
         url: string;
         width: number;
         height: number;
       };
-      medium: {
+      medium?: {
         url: string;
         width: number;
         height: number;
@@ -29,7 +29,7 @@ export interface SearchResult {
         height: number;
       };
     };
-    channelTitle: string;
-    liveBroadcastContent: string;
+    channelTitle?: string;
+    liveBroadcastContent?: string;
   };
 }

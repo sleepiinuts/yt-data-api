@@ -10,7 +10,7 @@ export interface SearchResp {
   items: SearchResult[];
 }
 
-interface PageInfo {
+export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
 }
