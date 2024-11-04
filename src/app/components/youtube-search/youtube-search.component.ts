@@ -51,6 +51,14 @@ export class YoutubeSearchComponent {
     console.log(
       `container scroll height: ${this.container.nativeElement.scrollHeight}`
     );
+
+    let offsetHeight = this.container.nativeElement.offsetHeight;
+    let scrollPos = (event.target as HTMLElement).scrollTop;
+    let scrollHeight = this.container.nativeElement.scrollHeight;
+
+    if (offsetHeight + scrollPos >= scrollHeight) {
+      console.log('reached bottom!!');
+    }
   }
 
   @HostListener('window:scroll', []) onscroll() {
