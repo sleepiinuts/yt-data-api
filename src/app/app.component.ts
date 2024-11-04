@@ -3,11 +3,12 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { APP_CONFIG } from '../environments/app-config.token';
+import { YoutubeSearchComponent } from './components/youtube-search/youtube-search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, YoutubeSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -1,0 +1,57 @@
+$content-width:70%;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.scroll{
+  width: $content-width;
+  height: 50%;
+  overflow-y: scroll;
+}
+
+.section {
+  display: block;
+  min-height: 30%;
+
+  &.no01 {
+    background-color: aquamarine;
+  }
+
+  &.no02 {
+    background-color: #C6E7FF;
+  }
+
+  &.no03{
+    background-color: #D4F6FF;
+  }
+
+  &.no04{
+    background-color: #FBFBFB;
+  }
+
+  &.no05{
+    background-color: #FFDDAE;
+  }
+
+  &.no06{
+    background-color: #FFB38E;
+  }
+}
+
+.stat-detail {
+  width: $content-width;
+}
+
+
+
+
+
+
+
+
+
