@@ -9,6 +9,7 @@
       matInput
       [formControl]="searchForm"
       placeholder="Marvel Snap Meta Deck"
+      autofocus
     />
     @if(searchForm.hasError('required')){
     <mat-error>Value is <strong>required</strong></mat-error>

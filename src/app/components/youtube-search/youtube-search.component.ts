@@ -95,4 +95,8 @@ export class YoutubeSearchComponent {
   //     console.log('reach bottom');
   //   }
   // }
+
+  onSearch(event: string) {
+    console.log(`search str: ${event}`);
+  }
 }

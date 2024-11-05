@@ -1,5 +1,5 @@
 <div class="container">
-  <app-search-box></app-search-box>
+  <app-search-box (searchStr)="onSearch($event)"></app-search-box>
   <div class="scroll" (scroll)="scrollTracker($event)" #scroll>
     <div class="section no01"></div>
     <div class="section no02"></div>
