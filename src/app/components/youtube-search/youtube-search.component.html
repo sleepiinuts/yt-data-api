@@ -1,4 +1,5 @@
 <div class="container">
+  <app-search-box></app-search-box>
   <div class="scroll" (scroll)="scrollTracker($event)" #scroll>
     <div class="section no01"></div>
     <div class="section no02"></div>
@@ -16,8 +17,10 @@
   </div>
 </div>
 
+@if(items.length > 0){
 <div class="search-result">
   @for(item of items;track item.id?.videoId){
   <app-search-result [item]="item"></app-search-result>
   }
 </div>
+}

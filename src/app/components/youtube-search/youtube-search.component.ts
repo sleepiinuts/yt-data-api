@@ -19,11 +19,12 @@ import { Store } from '@ngrx/store';
 import { SearchResp } from '../../models/search-resp.model';
 import { youtubeFeatureKey } from '../../store/youtube.reducer';
 import { YoutubeActions } from '../../store/youtube.actions';
+import { SearchBoxComponent } from '../search-box/search-box.component';
 
 @Component({
   selector: 'app-youtube-search',
   standalone: true,
-  imports: [ScrollingModule, SearchResultComponent],
+  imports: [ScrollingModule, SearchResultComponent, SearchBoxComponent],
   templateUrl: './youtube-search.component.html',
   styleUrl: './youtube-search.component.scss',
 })
@@ -54,9 +55,9 @@ export class YoutubeSearchComponent {
     //   );
 
     // dispatch fetch items
-    this.store.dispatch(
-      YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
-    );
+    // this.store.dispatch(
+    //   YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
+    // );
 
     // subscribe to items from store
     this.store

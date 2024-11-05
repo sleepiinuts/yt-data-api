@@ -1,1 +1,17 @@
-<p>search-box works!</p>
+<h3>Youtube Search</h3>
+<hr />
+
+<form class="search-form">
+  <mat-form-field>
+    <mat-label>Search Value</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="searchForm"
+      placeholder="Marvel Snap Meta Deck"
+    />
+    @if(searchForm.hasError('required')){
+    <mat-error>Value is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+</form>
