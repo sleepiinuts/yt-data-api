@@ -55,9 +55,9 @@ export class YoutubeSearchComponent {
     //   );
 
     // dispatch fetch items
-    this.store.dispatch(
-      YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
-    );
+    // this.store.dispatch(
+    //   YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
+    // );
 
     // subscribe to items from store
     this.store
@@ -96,7 +96,9 @@ export class YoutubeSearchComponent {
   //   }
   // }
 
-  onSearch(event: string) {
-    console.log(`search str: ${event}`);
+  onSearch(q: string) {
+    console.log(`search str: ${q}`);
+    this.container.nativeElement.scrollTop = 0;
+    this.store.dispatch(YoutubeActions.loadYoutubeVideos({ data: { q: q } }));
   }
 }
