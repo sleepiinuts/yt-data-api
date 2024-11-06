@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { YoutubeActions } from './youtube.actions';
 import { catchError, exhaustMap, of, switchMap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { SearchResp } from '../models/search-resp.model';
 import { APP_CONFIG } from '../../environments/app-config.token';
+import { ErrResp } from '../models/error.model';
+import { SearchResp } from '../models/search-resp.model';
+import { YoutubeActions } from './youtube.actions';
 
 @Injectable()
 export class YoutubeEffects {
@@ -31,7 +32,7 @@ export class YoutubeEffects {
             switchMap((resp) =>
               of(YoutubeActions.loadYoutubeVideosSuccess({ data: resp }))
             ),
-            catchError((err) =>
+            catchError((err: ErrResp) =>
               of(YoutubeActions.loadYoutubesVideoFailure({ error: err }))
             )
           )
