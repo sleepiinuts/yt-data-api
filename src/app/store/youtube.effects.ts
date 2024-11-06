@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { YoutubeActions } from './youtube.actions';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SearchResp } from '../models/search-resp.model';
 import { APP_CONFIG } from '../../environments/app-config.token';
@@ -28,8 +28,8 @@ export class YoutubeEffects {
             `${this.appConfig.apiURL}?${params}&q=${props.data.q}`
           )
           .pipe(
-            map((resp) =>
-              YoutubeActions.loadYoutubeVideosSuccess({ data: resp })
+            switchMap((resp) =>
+              of(YoutubeActions.loadYoutubeVideosSuccess({ data: resp }))
             ),
             catchError((err) =>
               of(YoutubeActions.loadYoutubesVideoFailure({ error: err }))
