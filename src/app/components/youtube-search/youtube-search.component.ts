@@ -34,6 +34,8 @@ export class YoutubeSearchComponent {
 
   items: SearchResult[] = [];
 
+  private readonly scrollingOffset = 20;
+
   constructor(
     private router: Router,
     private scroll: ScrollDispatcher,
@@ -81,7 +83,7 @@ export class YoutubeSearchComponent {
     let scrollPos = (event.target as HTMLElement).scrollTop; // scoll position
     let scrollHeight = this.container.nativeElement.scrollHeight; // total scrollable height
 
-    if (offsetHeight + scrollPos >= scrollHeight) {
+    if (offsetHeight + scrollPos + this.scrollingOffset >= scrollHeight) {
       console.log('reached bottom!!');
     }
   }
