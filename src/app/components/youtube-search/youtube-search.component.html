@@ -1,12 +1,18 @@
 <div class="container">
   <app-search-box (searchStr)="onSearch($event)"></app-search-box>
   <div class="scroll" (scroll)="scrollTracker($event)" #scroll>
-    <div class="section no01"></div>
+    <!-- <div class="section no01"></div>
     <div class="section no02"></div>
     <div class="section no03"></div>
     <div class="section no04"></div>
     <div class="section no05"></div>
-    <div class="section no06"></div>
+    <div class="section no06"></div> -->
+
+    @if(items.length > 0){ @for(item of items;track item.id?.videoId){
+    <div class="search-result">
+      <app-search-result [item]="item"></app-search-result>
+    </div>
+    } }
   </div>
   <div class="stat-detail">
     <p>
@@ -16,11 +22,3 @@
     </p>
   </div>
 </div>
-
-@if(items.length > 0){
-<div class="search-result">
-  @for(item of items;track item.id?.videoId){
-  <app-search-result [item]="item"></app-search-result>
-  }
-</div>
-}

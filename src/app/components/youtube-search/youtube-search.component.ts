@@ -55,9 +55,9 @@ export class YoutubeSearchComponent {
     //   );
 
     // dispatch fetch items
-    // this.store.dispatch(
-    //   YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
-    // );
+    this.store.dispatch(
+      YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
+    );
 
     // subscribe to items from store
     this.store
