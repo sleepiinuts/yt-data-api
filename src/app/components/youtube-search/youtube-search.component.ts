@@ -1,25 +1,16 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  ViewChild,
-} from '@angular/core';
+import { ScrollDispatcher, ScrollingModule } from '@angular/cdk/scrolling';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  CdkScrollable,
-  ScrollDispatcher,
-  ScrollingModule,
-} from '@angular/cdk/scrolling';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SearchResultComponent } from '../search-result/search-result.component';
-import { SearchResult } from '../../models/search-result.model';
 import { Store } from '@ngrx/store';
 import { SearchResp } from '../../models/search-resp.model';
-import { youtubeFeatureKey } from '../../store/youtube.reducer';
+import { SearchResult } from '../../models/search-result.model';
 import { YoutubeActions } from '../../store/youtube.actions';
+import { youtubeFeatureKey } from '../../store/youtube.reducer';
+import { selectError } from '../../store/youtube.selectors';
 import { SearchBoxComponent } from '../search-box/search-box.component';
+import { SearchResultComponent } from '../search-result/search-result.component';
 
 @Component({
   selector: 'app-youtube-search',
@@ -56,11 +47,6 @@ export class YoutubeSearchComponent {
     //     )
     //   );
 
-    // dispatch fetch items
-    // this.store.dispatch(
-    //   YoutubeActions.loadYoutubeVideos({ data: { q: 'marvel snap meta deck' } })
-    // );
-
     // subscribe to items from store
     this.store
       .select(youtubeFeatureKey)
@@ -68,6 +54,12 @@ export class YoutubeSearchComponent {
       .subscribe((resp) => {
         this.items = resp.items;
       });
+
+    // subscribe to error from store
+    this.store
+      .select(selectError)
+      .pipe(takeUntilDestroyed())
+      .subscribe((err) => console.log(err));
   }
 
   scrollTracker(event: Event) {
