@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
 import { SearchResp } from '../../models/search-resp.model';
 import { SearchResult } from '../../models/search-result.model';
 import { YoutubeActions } from '../../store/youtube.actions';
@@ -58,7 +59,10 @@ export class YoutubeSearchComponent {
     // subscribe to error from store
     this.store
       .select(selectError)
-      .pipe(takeUntilDestroyed())
+      .pipe(
+        takeUntilDestroyed(),
+        filter((err) => !err)
+      )
       .subscribe((err) => console.log(err));
   }
 
