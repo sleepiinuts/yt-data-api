@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { ErrResp } from '../models/error.model';
-import { SearchResp } from '../models/search-resp.model';
+import { ErrResp } from '../../models/error.model';
+import { SearchResp } from '../../models/search-resp.model';
 
 export const YoutubeActions = createActionGroup({
   source: 'Youtube',

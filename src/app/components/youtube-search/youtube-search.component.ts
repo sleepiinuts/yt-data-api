@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { SearchResp } from '../../models/search-resp.model';
 import { SearchResult } from '../../models/search-result.model';
-import { YoutubeActions } from '../../store/youtube.actions';
-import { youtubeFeatureKey } from '../../store/youtube.reducer';
-import { selectError } from '../../store/youtube.selectors';
+import {
+  AppState,
+  selectError,
+  selectYoutube,
+} from '../../store/all.selectors';
+import { YoutubeActions } from '../../store/youtube/youtube.actions';
 import { SearchBoxComponent } from '../search-box/search-box.component';
 import { SearchResultComponent } from '../search-result/search-result.component';
 
@@ -31,7 +33,7 @@ export class YoutubeSearchComponent {
   constructor(
     private router: Router,
     private scroll: ScrollDispatcher,
-    private store: Store<{ youtube: SearchResp }>
+    private store: Store<AppState>
   ) {
     // this.router.events
     //   .pipe(
@@ -50,7 +52,7 @@ export class YoutubeSearchComponent {
 
     // subscribe to items from store
     this.store
-      .select(youtubeFeatureKey)
+      .select(selectYoutube)
       .pipe(takeUntilDestroyed())
       .subscribe((resp) => {
         this.items = resp.items;
@@ -61,9 +63,11 @@ export class YoutubeSearchComponent {
       .select(selectError)
       .pipe(
         takeUntilDestroyed(),
-        filter((err) => !err)
+        filter((err) => Object.keys(err.err).length !== 0)
       )
-      .subscribe((err) => console.log(err));
+      .subscribe((err) => {
+        console.log(`hello: ${JSON.stringify(err.err)}`);
+      });
   }
 
   scrollTracker(event: Event) {

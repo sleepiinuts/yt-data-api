@@ -1,24 +1,22 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection,
   isDevMode,
+  provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideEffects } from '@ngrx/effects';
+import { provideState, provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { APP_CONFIG } from '../environments/app-config.token';
 import { environment } from '../environments/environment';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideState, provideStore } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import {
-  reducer as ytReducer,
-  youtubeFeatureKey,
-} from './store/youtube.reducer';
-import { YoutubeEffects } from './store/youtube.effects';
+import { routes } from './app.routes';
+import { errorFeatureKey, errReducer } from './store/error/error.reducer';
+import { YoutubeEffects } from './store/youtube/youtube.effects';
+import { youtubeFeatureKey, ytReducer } from './store/youtube/youtube.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore(),
     provideState({ name: youtubeFeatureKey, reducer: ytReducer }),
+    provideState({ name: errorFeatureKey, reducer: errReducer }),
     provideEffects(YoutubeEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],

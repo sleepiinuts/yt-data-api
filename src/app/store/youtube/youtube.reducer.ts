@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
+import { ErrResp } from '../../models/error.model';
+import { PageInfo } from '../../models/search-resp.model';
+import { SearchResult } from '../../models/search-result.model';
 import { YoutubeActions } from './youtube.actions';
-import { SearchResult } from '../models/search-result.model';
-import { PageInfo } from '../models/search-resp.model';
-import { ErrResp } from '../models/error.model';
 
 export const youtubeFeatureKey = 'youtube';
 
-export interface State {
+export interface ytState {
   items: SearchResult[];
   pageInfo: PageInfo;
   nextPageToken: string;
@@ -14,7 +14,7 @@ export interface State {
   err: Error;
 }
 
-export const initialState: State = {
+export const initialState: ytState = {
   items: [],
   pageInfo: { totalResults: 0, resultsPerPage: 0 },
   nextPageToken: '',
@@ -22,7 +22,7 @@ export const initialState: State = {
   err: <ErrResp>{},
 };
 
-export const reducer = createReducer(
+export const ytReducer = createReducer(
   initialState,
   on(YoutubeActions.loadYoutubeVideosSuccess, (state, props) => ({
     ...state,
