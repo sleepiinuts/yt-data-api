@@ -72,7 +72,7 @@ export class YoutubeSearchComponent {
         console.log(`hello: ${JSON.stringify(err.err)}`);
         this._snackBar.openFromComponent(SnackbarComponent, {
           data: err.err,
-          duration: 3000,
+          // duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });

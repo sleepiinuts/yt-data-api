@@ -1,6 +1,7 @@
-<h5>Something went wrong... please try again later</h5>
+<div class="header">
+  <h5>Something went wrong...</h5>
+  <button mat-icon-button (click)="_snackBarRef.dismiss()">
+    <mat-icon class="close-button">close</mat-icon>
+  </button>
+</div>
 <p>{{ data.message }}</p>
-
-<button mat-icon-button (click)="_snackBarRef.dismiss()">
-  <mat-icon>close</mat-icon>
-</button>
