@@ -1,8 +1,9 @@
 import { ScrollDispatcher, ScrollingModule } from '@angular/cdk/scrolling';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { SearchResult } from '../../models/search-result.model';
@@ -14,6 +15,7 @@ import {
 import { YoutubeActions } from '../../store/youtube/youtube.actions';
 import { SearchBoxComponent } from '../search-box/search-box.component';
 import { SearchResultComponent } from '../search-result/search-result.component';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-youtube-search',
@@ -29,6 +31,7 @@ export class YoutubeSearchComponent {
   items: SearchResult[] = [];
 
   private readonly scrollingOffset = 20;
+  private _snackBar = inject(MatSnackBar);
 
   constructor(
     private router: Router,
@@ -67,6 +70,12 @@ export class YoutubeSearchComponent {
       )
       .subscribe((err) => {
         console.log(`hello: ${JSON.stringify(err.err)}`);
+        this._snackBar.openFromComponent(SnackbarComponent, {
+          data: err.err,
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       });
   }
 

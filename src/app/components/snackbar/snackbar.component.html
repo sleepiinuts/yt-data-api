@@ -1,6 +1,6 @@
-<h3>Something went wrong... please try again later</h3>
-<p>{{ msg() }}</p>
+<h5>Something went wrong... please try again later</h5>
+<p>{{ data.message }}</p>
 
-<button mat-icon-button>
+<button mat-icon-button (click)="_snackBarRef.dismiss()">
   <mat-icon>close</mat-icon>
 </button>
