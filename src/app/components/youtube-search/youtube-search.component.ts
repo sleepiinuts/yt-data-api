@@ -49,7 +49,7 @@ export class YoutubeSearchComponent {
         filter((err) => Object.keys(err.err).length !== 0)
       )
       .subscribe((err) => {
-        console.log(`hello: ${JSON.stringify(err.err)}`);
+        // console.log(`hello: ${JSON.stringify(err.err)}`);
         this._snackBar.openFromComponent(SnackbarComponent, {
           data: err.err,
           // duration: 3000,
@@ -60,13 +60,13 @@ export class YoutubeSearchComponent {
   }
 
   scrollTracker(event: Event) {
-    console.log(`scroll position: ${(event.target as HTMLElement).scrollTop}`);
-    console.log(
-      `container height: ${this.container.nativeElement.offsetHeight}`
-    );
-    console.log(
-      `container scroll height: ${this.container.nativeElement.scrollHeight}`
-    );
+    // console.log(`scroll position: ${(event.target as HTMLElement).scrollTop}`);
+    // console.log(
+    //   `container height: ${this.container.nativeElement.offsetHeight}`
+    // );
+    // console.log(
+    //   `container scroll height: ${this.container.nativeElement.scrollHeight}`
+    // );
 
     let offsetHeight = this.container.nativeElement.offsetHeight; // element height
     let scrollPos = (event.target as HTMLElement).scrollTop; // scoll position
@@ -74,6 +74,7 @@ export class YoutubeSearchComponent {
 
     if (offsetHeight + scrollPos + this.scrollingOffset >= scrollHeight) {
       console.log('reached bottom!!');
+      this.store.dispatch(YoutubeActions.loadMoreYoutubeVideos());
     }
   }
 
@@ -88,7 +89,7 @@ export class YoutubeSearchComponent {
   // }
 
   onSearch(q: string) {
-    console.log(`search str: ${q}`);
+    // console.log(`search str: ${q}`);
     this.container.nativeElement.scrollTop = 0;
     this.store.dispatch(YoutubeActions.loadYoutubeVideos({ data: { q: q } }));
   }
