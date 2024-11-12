@@ -1,6 +1,5 @@
-import { ScrollDispatcher, ScrollingModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -33,26 +32,7 @@ export class YoutubeSearchComponent {
   private readonly scrollingOffset = 20;
   private _snackBar = inject(MatSnackBar);
 
-  constructor(
-    private router: Router,
-    private scroll: ScrollDispatcher,
-    private store: Store<AppState>
-  ) {
-    // this.router.events
-    //   .pipe(
-    //     filter((event) => event instanceof Scroll),
-    //     map((event) => event.position)
-    //   )
-    //   .subscribe((position) => console.log(`scroll position: ${position}`));
-    // this.scroll
-    //   .scrolled()
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe((data) =>
-    //     console.log(
-    //       `scrolldata: ${data?.getElementRef().nativeElement.scrollTop}`
-    //     )
-    //   );
-
+  constructor(private store: Store<AppState>) {
     // subscribe to items from store
     this.store
       .select(selectYoutube)
